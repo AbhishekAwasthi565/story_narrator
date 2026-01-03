@@ -30,11 +30,13 @@ if user_api_key:
         llm = HuggingFaceEndpoint(
             repo_id="mistralai/Mistral-7B-Instruct-v0.2",
             task="text-generation",
+            model_kwargs={
+                "max_new_tokens": 512,
+                "temperature": 0.7,
+            },
             huggingfacehub_api_base="https://router.huggingface.co",
-            huggingfacehub_api_token=user_api_key,
-            max_new_tokens=512,
-            temperature=0.7,
         )
+
 
 
         chat_model = ChatHuggingFace(llm=llm)
